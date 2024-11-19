@@ -5,7 +5,7 @@
         <ul class="nav flex-column">
             <!-- Dashboard Section -->
             <li class="nav-item mb-2">
-                <a href="#" class="nav-link text-white">
+                <a href="{{ route('dashboard') }}" class="btn btn-secondary">>
                     <i class="bi bi-speedometer2"></i> Dashboard
                 </a>
             </li>
@@ -16,7 +16,7 @@
                     <i class="bi bi-folder"></i> Main
                 </a>
                 <ul class="collapse list-unstyled ps-3" id="mainSubMenu">
-                    <li><a href="#" class="nav-link text-white">Users</a></li>
+                    <li><a href="{{ route('clients.index') }}" class="btn btn-secondary">Users</a></li>
                     <li><a href="#" class="nav-link text-white">Bills</a></li>
                 </ul>
             </li>
