@@ -10,12 +10,12 @@ class WaterBill extends Model
     use HasFactory;
 
     // Define the fillable fields to allow mass assignment
-    protected $fillable = [
+    protected $casts = [
         'client_id',
         'current_reading',
         'rate',
         'amount_due',
-        'billing_date',
+        'billing_date' => 'datetime',
     ];
 
     // Define the relationship with the Client model

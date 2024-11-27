@@ -17,7 +17,7 @@
                 </a>
                 <ul class="collapse list-unstyled ps-3" id="mainSubMenu">
                     <li><a href="{{ route('clients.index') }}" class="btn btn-secondary">Users</a></li>
-                    <li><a href="{{ route('bills.create') }}" class="nav-link text-white">Bills</a></li>
+                    <li><a href="{{ route('bills.index') }}" class="btn btn-secondary">Bills</a></li>
                 </ul>
             </li>
 

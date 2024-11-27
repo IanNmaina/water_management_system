@@ -30,6 +30,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/create', [WaterBillController::class, 'create'])->name('bills.create'); // Show form to create billing
         Route::post('/', [WaterBillController::class, 'store'])->name('bills.store'); // Store a new billing
         Route::get('/{id}', [WaterBillController::class, 'show'])->name('bills.show'); // View invoice for a specific billing
+        Route::get('/{id}/edit', [WaterBillController::class, 'edit'])->name('bills.edit');
+        Route::put('/{id}', [WaterBillController::class, 'update'])->name('bills.update');
         Route::delete('/{id}', [WaterBillController::class, 'destroy'])->name('bills.destroy'); // Delete a billing
     });
 });
