@@ -2,25 +2,37 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\WaterBillController; // Corrected namespace
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+Route::middleware(['auth', 'verified'])->group(function () {
+    // Dashboard
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    Route::get('/clients/create', [ClientController::class, 'create'])->name('clients.create');
-    Route::post('/clients', [ClientController::class, 'store'])->name('clients.store');
+
+    // Profile Management
+    Route::prefix('profile')->group(function () {
+        Route::get('/', [ProfileController::class, 'edit'])->name('profile.edit');
+        Route::patch('/', [ProfileController::class, 'update'])->name('profile.update');
+        Route::delete('/', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    });
+
+    // Client Management
     Route::resource('clients', ClientController::class);
+
+    // Water Bill Management
+    Route::prefix('bills')->group(function () {
+        Route::get('/', [WaterBillController::class, 'index'])->name('bills.index'); // List all billings
+        Route::get('/create', [WaterBillController::class, 'create'])->name('bills.create'); // Show form to create billing
+        Route::post('/', [WaterBillController::class, 'store'])->name('bills.store'); // Store a new billing
+        Route::get('/{id}', [WaterBillController::class, 'show'])->name('bills.show'); // View invoice for a specific billing
+        Route::delete('/{id}', [WaterBillController::class, 'destroy'])->name('bills.destroy'); // Delete a billing
+    });
 });
 
-require __DIR__.'/auth.php';
+// Authentication routes
+require __DIR__ . '/auth.php';

@@ -17,7 +17,7 @@
                 <div class="col-md-4 mb-3">
                     <div class="card p-2">
                         <h5>Pending Bills</h5>
-                        <p>{{ $pendingBills }}</p>
+
                     </div>
                 </div>
             </div>
